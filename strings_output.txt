@@ -1,0 +1,7 @@
+.strip()    → clean the edges
+.split()    → string → list
+.join()     → list → string
+.replace()  → change text
+
+f""         → clean modern output
+.format()   → another way to insert values
