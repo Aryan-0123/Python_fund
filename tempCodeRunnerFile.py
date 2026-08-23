@@ -1,10 +1,16 @@
-tuples = (1, 2, 3)
-print(len(tuples))
-print(tuples[0])
-print(tuples[1:3])
-tuples2 = (4, 5, 6)
-print(tuples + tuples2)
-print(tuples * 2)
-print(1 in tuples)
-print(4 in tuples)
-print(tuples.__dir__())
+students = {
+    "student1": {
+        "name": "Aryan",
+        "age": 22,
+        "marks": 85
+    },
+    "student2": {
+        "name": "Rahul",
+        "age": 21,
+        "marks": 91
+    }
+}
+
+# Access nested values
+print(students["student1"]["name"])    # Aryan
+print(students["student2"]["age"])   # 91
