@@ -1,0 +1,260 @@
+# File Handling
+
+Python uses `open()` to work with files.
+
+## 1. Opening a File
+
+Basic syntax:
+
+```python
+with open("file.txt", "r") as file:
+    data = file.read()
+    print(data)
+```
+
+`with` automatically closes the file after the block finishes.
+
+---
+
+## 2. File Modes
+
+```text
+"r" → Read
+"w" → Write (replaces existing content)
+"a" → Append (adds to existing content)
+```
+
+### Read
+
+```python
+with open("file.txt", "r") as file:
+    data = file.read()
+```
+
+### Write
+
+```python
+with open("file.txt", "w") as file:
+    file.write("Hello")
+```
+
+`"w"` replaces the existing content.
+
+### Append
+
+```python
+with open("file.txt", "a") as file:
+    file.write("\nHello again")
+```
+
+`"a"` keeps the existing content and adds to the end.
+
+---
+
+## 3. `read()`
+
+Reads the entire file as a string.
+
+```python
+with open("file.txt", "r") as file:
+    data = file.read()
+
+print(data)
+```
+
+---
+
+## 4. `readline()`
+
+Reads one line at a time.
+
+```python
+with open("file.txt", "r") as file:
+    line = file.readline()
+    print(line)
+```
+
+To read multiple lines:
+
+```python
+with open("file.txt", "r") as file:
+    print(file.readline())
+    print(file.readline())
+```
+
+---
+
+## 5. `readlines()`
+
+Reads all lines and returns them as a list.
+
+If the file contains:
+
+```text
+Rahul
+Aryan
+Rohan
+```
+
+then:
+
+```python
+with open("file.txt", "r") as file:
+    lines = file.readlines()
+
+print(lines)
+```
+
+Output:
+
+```text
+['Rahul\n', 'Aryan\n', 'Rohan\n']
+```
+
+---
+
+## 6. Looping Through a File
+
+Instead of `readlines()`, we can directly loop through the file:
+
+```python
+with open("file.txt", "r") as file:
+    for line in file:
+        print(line.strip())
+```
+
+`strip()` removes the extra newline (`\n`) from each line.
+
+---
+
+## 7. `write()`
+
+Writes a string into a file.
+
+```python
+with open("file.txt", "w") as file:
+    file.write("Hello")
+    file.write("\nWelcome")
+```
+
+`write()` takes a string.
+
+For numbers:
+
+```python
+age = 22
+
+with open("file.txt", "w") as file:
+    file.write(str(age))
+```
+
+---
+
+## 8. `writelines()`
+
+Used to write multiple strings.
+
+```python
+names = ["Rahul\n", "Aryan\n", "Rohan\n"]
+
+with open("file.txt", "w") as file:
+    file.writelines(names)
+```
+
+It does **not** automatically add `\n`, so we add it ourselves.
+
+---
+
+## 9. File Paths
+
+You can give a file's path instead of just its name.
+
+```python
+with open("data/file.txt", "r") as file:
+    data = file.read()
+```
+
+For Windows paths, using `/` is often simpler:
+
+```python
+with open("C:/Users/Aryan/data/file.txt", "r") as file:
+    data = file.read()
+```
+
+---
+
+## 10. Checking if a File Exists
+
+Python's `os` module can check whether a file exists.
+
+```python
+import os
+
+if os.path.exists("file.txt"):
+    print("File exists")
+else:
+    print("File does not exist")
+```
+
+This can prevent errors when trying to open a file that isn't there.
+
+---
+
+## 11. Why Use `with`?
+
+Without `with`:
+
+```python
+file = open("file.txt", "r")
+data = file.read()
+file.close()
+```
+
+With `with`:
+
+```python
+with open("file.txt", "r") as file:
+    data = file.read()
+```
+
+The second approach is preferred because Python automatically closes the file.
+
+---
+
+## Quick Revision
+
+```text
+open()       → open a file
+"r"          → read
+"w"          → write/replace
+"a"          → append
+read()       → read everything
+readline()   → read one line
+readlines()  → read all lines as a list
+write()      → write a string
+writelines() → write multiple strings
+strip()      → remove extra whitespace/newline
+with         → automatically closes the file
+os.path.exists() → check if file exists
+```
+
+### Most important pattern
+
+```python
+with open("file.txt", "r") as file:
+    data = file.read()
+```
+
+For writing:
+
+```python
+with open("file.txt", "w") as file:
+    file.write("Hello")
+```
+
+For appending:
+
+```python
+with open("file.txt", "a") as file:
+    file.write("\nHello again")
+```
